@@ -6,7 +6,7 @@
     },
     "provider": {
       "name": "aws",
-      "runtime": "java8",
+      "runtime": "java11",
       "lambdaHashingVersion": "20201221",
       "stage": "prod",
       "region": "ap-northeast-1",
@@ -175,10 +175,10 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/birds-eye-scraping/prod/1647597625573-2022-03-18T10:00:25.573Z/target/main-prod.jar"
+                "S3Key": "serverless/birds-eye-scraping/prod/1648032670684-2022-03-23T10:51:10.684Z/target/main-prod.jar"
               },
               "Handler": "com.serverless.Handler",
-              "Runtime": "java8",
+              "Runtime": "java11",
               "FunctionName": "birds-eye-scraping-prod-main",
               "MemorySize": 1024,
               "Timeout": 6,
@@ -193,14 +193,14 @@
               "MainLogGroup"
             ]
           },
-          "MainLambdaVersionoSnqo4aGgDcmxF18KpF16ec8dfhi9ln1OqSx5Zdg0": {
+          "MainLambdaVersionM3cRJV08zKHl2Tvc6gYhvmOlvI5nI73pkk23rYpDcA": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "MainLambdaFunction"
               },
-              "CodeSha256": "CFAUmL+rGdirtT2IvuCVB9tOLcZ+DwGltrSPnGWWcfA="
+              "CodeSha256": "J/Pnb42TOra7NRK1Ym9NgUwKztapCHdMax1/LMNn3gs="
             }
           }
         },
@@ -213,7 +213,7 @@
           "MainLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "MainLambdaVersionoSnqo4aGgDcmxF18KpF16ec8dfhi9ln1OqSx5Zdg0"
+              "Ref": "MainLambdaVersionM3cRJV08zKHl2Tvc6gYhvmOlvI5nI73pkk23rYpDcA"
             }
           }
         }
@@ -311,9 +311,9 @@
         "package": {},
         "memory": 1024,
         "timeout": 6,
-        "runtime": "java8",
+        "runtime": "java11",
         "vpc": {},
-        "versionLogicalId": "MainLambdaVersionoSnqo4aGgDcmxF18KpF16ec8dfhi9ln1OqSx5Zdg0"
+        "versionLogicalId": "MainLambdaVersionM3cRJV08zKHl2Tvc6gYhvmOlvI5nI73pkk23rYpDcA"
       }
     },
     "configValidationMode": "warn",
@@ -329,7 +329,7 @@
       },
       "package": {
         "artifact": "target/main-prod.jar",
-        "artifactDirectoryName": "serverless/birds-eye-scraping/prod/1647597625573-2022-03-18T10:00:25.573Z"
+        "artifactDirectoryName": "serverless/birds-eye-scraping/prod/1648032670684-2022-03-23T10:51:10.684Z"
       },
       "functions": {
         "$ref": "$[\"service\"][\"functions\"]"
@@ -338,7 +338,7 @@
     "isDashboardMonitoringPreconfigured": false
   },
   "package": {
-    "artifactDirectoryName": "serverless/birds-eye-scraping/prod/1647597625573-2022-03-18T10:00:25.573Z",
+    "artifactDirectoryName": "serverless/birds-eye-scraping/prod/1648032670684-2022-03-23T10:51:10.684Z",
     "artifact": "target/main-prod.jar"
   }
 }

@@ -46,6 +46,15 @@ public class ApiGatewayResponse {
 		return new Builder();
 	}
 
+	@Override
+	public String toString() {
+		return "ApiGatewayResponse -------------------------" + "\n" +
+			"statusCode: " + statusCode + "\n" +
+			"body: " + body + "\n" +
+			"headers: " + headers + "\n" +
+			"isBase64Encoded: " + isBase64Encoded;
+	}
+
 	public static class Builder {
 
 		private static final Logger LOG = LogManager.getLogger(ApiGatewayResponse.Builder.class);

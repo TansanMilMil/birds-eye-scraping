@@ -19,14 +19,21 @@ import org.apache.logging.log4j.Logger;
 
 public class SiteScraping {
     private static final Logger LOG = LogManager.getLogger(Handler.class);
+    private static final int MAX_SCRAPING_ARTICLE = 5;
     
     public static void scrape() throws IOException {
         List<ScrapingBase> scrapingList = Arrays.asList(
-            new ScrapeAtMarkIt()
+            new ScrapeAtMarkIt(),
+            new ScrapeCloudWatchImpress(),
+            new ScrapeHatena(),
+            new ScrapeZenn(),
+            new ScrapeSrad(),
+            new ScrapeZDNet()
         );
         for (ScrapingBase scraping : scrapingList) {
             List<News> newsList = scraping.extractNews();
             putToS3(newsList, scraping.getSourceBy());
+            LOG.info(scraping.getSourceBy() + " / scraped article: " + newsList.size());
         }
     }
 
@@ -35,8 +42,7 @@ public class SiteScraping {
         String bucketName = "birds-eye-news"; 
         ZonedDateTime now = ZonedDateTime.now(ZoneId.of("UTC"));
                 
-        LOG.info("newsList.size(): " + newsList.size());
-        for (int i = 0; i < newsList.size(); i++) {
+        for (int i = 0; i < newsList.size() && i < MAX_SCRAPING_ARTICLE; i++) {
             s3Manager.putObject(
                 now.format(DateTimeFormatter.ISO_LOCAL_DATE) + "/" + sourceBy + "/" + newsList.get(i).id + ".json", 
                 bucketName, 

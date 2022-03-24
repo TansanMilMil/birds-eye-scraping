@@ -7,6 +7,8 @@
     "provider": {
       "name": "aws",
       "runtime": "java11",
+      "memorySize": 1024,
+      "timeout": 30,
       "lambdaHashingVersion": "20201221",
       "stage": "prod",
       "region": "ap-northeast-1",
@@ -175,13 +177,13 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/birds-eye-scraping/prod/1648032670684-2022-03-23T10:51:10.684Z/target/main-prod.jar"
+                "S3Key": "serverless/birds-eye-scraping/prod/1648089560352-2022-03-24T02:39:20.352Z/target/main-prod.jar"
               },
               "Handler": "com.serverless.Handler",
               "Runtime": "java11",
               "FunctionName": "birds-eye-scraping-prod-main",
               "MemorySize": 1024,
-              "Timeout": 6,
+              "Timeout": 30,
               "Role": {
                 "Fn::GetAtt": [
                   "IamRoleLambdaExecution",
@@ -193,14 +195,14 @@
               "MainLogGroup"
             ]
           },
-          "MainLambdaVersionM3cRJV08zKHl2Tvc6gYhvmOlvI5nI73pkk23rYpDcA": {
+          "MainLambdaVersionQXQqNiQ22NVJsszkIyJB6mYLoiJ9P7juyzuypUsgg": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "MainLambdaFunction"
               },
-              "CodeSha256": "J/Pnb42TOra7NRK1Ym9NgUwKztapCHdMax1/LMNn3gs="
+              "CodeSha256": "hrhTJ2AYzAMUXIdtGyi8l7waFedQYJMiKMkm2Ut3/g0="
             }
           }
         },
@@ -213,7 +215,7 @@
           "MainLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "MainLambdaVersionM3cRJV08zKHl2Tvc6gYhvmOlvI5nI73pkk23rYpDcA"
+              "Ref": "MainLambdaVersionQXQqNiQ22NVJsszkIyJB6mYLoiJ9P7juyzuypUsgg"
             }
           }
         }
@@ -310,10 +312,10 @@
         "name": "birds-eye-scraping-prod-main",
         "package": {},
         "memory": 1024,
-        "timeout": 6,
+        "timeout": 30,
         "runtime": "java11",
         "vpc": {},
-        "versionLogicalId": "MainLambdaVersionM3cRJV08zKHl2Tvc6gYhvmOlvI5nI73pkk23rYpDcA"
+        "versionLogicalId": "MainLambdaVersionQXQqNiQ22NVJsszkIyJB6mYLoiJ9P7juyzuypUsgg"
       }
     },
     "configValidationMode": "warn",
@@ -329,7 +331,7 @@
       },
       "package": {
         "artifact": "target/main-prod.jar",
-        "artifactDirectoryName": "serverless/birds-eye-scraping/prod/1648032670684-2022-03-23T10:51:10.684Z"
+        "artifactDirectoryName": "serverless/birds-eye-scraping/prod/1648089560352-2022-03-24T02:39:20.352Z"
       },
       "functions": {
         "$ref": "$[\"service\"][\"functions\"]"
@@ -338,7 +340,7 @@
     "isDashboardMonitoringPreconfigured": false
   },
   "package": {
-    "artifactDirectoryName": "serverless/birds-eye-scraping/prod/1648032670684-2022-03-23T10:51:10.684Z",
+    "artifactDirectoryName": "serverless/birds-eye-scraping/prod/1648089560352-2022-03-24T02:39:20.352Z",
     "artifact": "target/main-prod.jar"
   }
 }

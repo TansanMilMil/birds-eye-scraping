@@ -11,10 +11,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ScrapeAtMarkIt implements ScrapingBase {
+public class ScrapeCloudWatchImpress implements ScrapingBase {
     private final Logger LOG = LogManager.getLogger(Handler.class);
-    private final String SOURCE_BY = "atMarkItNews";
-    private final String SOURCE_URL = "https://atmarkit.itmedia.co.jp/ait/subtop/news/";
+    private final String SOURCE_BY = "cloudWatchImpress";
+    private final String SOURCE_URL = "https://cloud.watch.impress.co.jp/";
 
     public String getSourceBy() {
         return SOURCE_BY;
@@ -25,15 +25,14 @@ public class ScrapeAtMarkIt implements ScrapingBase {
 
         // jsoupで解析
         Document doc = Jsoup.connect(SOURCE_URL).get();
-        Elements newsAreaList = doc.select("#subtopContents > div:nth-child(3) > div > div.colBoxInner > div");
+        Elements newsAreaList = doc.select("#main > article > aside.top-news.topics > div > ul > li.item.news");
         int id = 0;
         for (Element newsArea : newsAreaList) {
             id++;
-            Elements newsTitle = newsArea.select("div.colBoxTitle > h3");
-            Elements newsDescription = newsArea.select("div.colBoxDescription > p");
-            newsList.add(new News(id, newsTitle.html(), newsDescription.html(), SOURCE_BY));                    
+            Elements newsTitle = newsArea.select("div.body > div.text > p.title");
+            newsList.add(new News(id, newsTitle.html(), null, SOURCE_BY));
         }
 
         return newsList;
-    }
+    }    
 }

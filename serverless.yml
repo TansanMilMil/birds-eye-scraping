@@ -23,6 +23,8 @@ frameworkVersion: '2'
 provider:
   name: aws
   runtime: java11
+  memorySize: 1024
+  timeout: 30
   lambdaHashingVersion: 20201221
 
 # you can overwrite defaults here

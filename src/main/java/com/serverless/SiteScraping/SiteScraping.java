@@ -5,6 +5,7 @@ import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -20,23 +21,26 @@ public class SiteScraping {
     private static final Logger LOG = LogManager.getLogger(Handler.class);
     
     public static void scrape() throws IOException {
-        List<String> atMarkItNews = ScrapeAtMarkIt.extractNews();
-        putToS3(atMarkItNews, "atMarkItNews");
+        List<ScrapingBase> scrapingList = Arrays.asList(
+            new ScrapeAtMarkIt()
+        );
+        for (ScrapingBase scraping : scrapingList) {
+            List<News> newsList = scraping.extractNews();
+            putToS3(newsList, scraping.getSourceBy());
+        }
     }
 
-    private static void putToS3(List<String> newsList, String sourceBy) throws IOException {
+    private static void putToS3(List<News> newsList, String sourceBy) throws IOException {
         S3Manager s3Manager = new S3Manager();
         String bucketName = "birds-eye-news"; 
         ZonedDateTime now = ZonedDateTime.now(ZoneId.of("UTC"));
                 
+        LOG.info("newsList.size(): " + newsList.size());
         for (int i = 0; i < newsList.size(); i++) {
-            long id = i + 1;
-            News news = new News(id, newsList.get(0), sourceBy);
-            String jsonStr = toJsonString(news);
             s3Manager.putObject(
-                now.format(DateTimeFormatter.ISO_LOCAL_DATE) + "/" + sourceBy + "/" + id + ".json", 
+                now.format(DateTimeFormatter.ISO_LOCAL_DATE) + "/" + sourceBy + "/" + newsList.get(i).id + ".json", 
                 bucketName, 
-                EncodeString.toByteBuffer(jsonStr)
+                EncodeString.toByteBuffer(toJsonString(newsList.get(i)))
             );
         }
     }

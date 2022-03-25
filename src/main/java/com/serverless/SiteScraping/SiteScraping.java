@@ -28,7 +28,8 @@ public class SiteScraping {
             new ScrapeHatena(),
             new ScrapeZenn(),
             new ScrapeSrad(),
-            new ScrapeZDNet()
+            new ScrapeZDNet(),
+            new ScrapeGigazine()
         );
         for (ScrapingBase scraping : scrapingList) {
             try {

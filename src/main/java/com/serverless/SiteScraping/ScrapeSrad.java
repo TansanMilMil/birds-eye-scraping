@@ -8,18 +8,23 @@ import com.serverless.Handler;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import java.io.IOException;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
 public class ScrapeSrad implements ScrapingBase {
     private final Logger LOG = LogManager.getLogger(Handler.class);
     private final String SOURCE_BY = "srad";
-    private final String SOURCE_URL = "https://srad.jp/";
+    private final String SOURCE_URL = "https://srad.jp";
 
+    @Override
     public String getSourceBy() {
         return SOURCE_BY;
     }
 
+    @Override
     public List<News> extractNews() throws IOException {
         List<News> newsList = new ArrayList<News>();
 
@@ -29,9 +34,11 @@ public class ScrapeSrad implements ScrapingBase {
         int id = 0;
         for (Element newsArea : newsAreaList) {
             id++;
-            Elements newsTitle = newsArea.select("header > h2.story > span[id^=\"title\"]");
+            Elements newsTitle = newsArea.select("header > h2.story > span[id^=\"title\"] > a");
             Elements newsDescription = newsArea.select("div.body > div");
-            newsList.add(new News(id, newsTitle.html(), newsDescription.html(), SOURCE_BY));                    
+            ZonedDateTime now = ZonedDateTime.now(ZoneId.of("UTC"));
+            String nowString = now.format(DateTimeFormatter.ISO_OFFSET_DATE_TIME);
+            newsList.add(new News(id, newsTitle.text(), newsDescription.html(), SOURCE_BY, SOURCE_URL, nowString, newsTitle.attr("href")));
         }
 
         return newsList;

@@ -31,9 +31,15 @@ public class SiteScraping {
             new ScrapeZDNet()
         );
         for (ScrapingBase scraping : scrapingList) {
-            List<News> newsList = scraping.extractNews();
-            putToS3(newsList, scraping.getSourceBy());
-            LOG.info(scraping.getSourceBy() + " / scraped article: " + newsList.size());
+            try {
+                List<News> newsList = scraping.extractNews();
+                putToS3(newsList, scraping.getSourceBy());
+                LOG.info(scraping.getSourceBy() + " / scraped article: " + newsList.size());
+            }
+            catch (Exception e) {
+                LOG.info(scraping.getSourceBy() + " / scraped failed...");
+                LOG.info(e.getStackTrace().toString());
+            }
         }
     }
 

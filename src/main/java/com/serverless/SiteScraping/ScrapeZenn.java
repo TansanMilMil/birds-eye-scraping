@@ -38,7 +38,7 @@ public class ScrapeZenn implements ScrapingBase {
             String href = SOURCE_URL + newsArea.attr("href");
             ZonedDateTime now = ZonedDateTime.now(ZoneId.of("UTC"));
             String nowString = now.format(DateTimeFormatter.ISO_OFFSET_DATE_TIME);
-            newsList.add(new News(id, newsTitle.text(), null, SOURCE_BY, SOURCE_URL, nowString, href));
+            newsList.add(new News(id, newsTitle.text(), null, SOURCE_BY, SOURCE_URL, nowString, href, null));
         }
 
         return newsList;

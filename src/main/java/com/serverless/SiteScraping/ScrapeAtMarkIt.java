@@ -36,10 +36,11 @@ public class ScrapeAtMarkIt implements ScrapingBase {
             id++;
             Elements newsTitle = newsArea.select("div.colBoxTitle > h3");
             Elements newsDescription = newsArea.select("div.colBoxDescription > p");
+            Elements newsImage = newsArea.select("div.colBoxIcon > a > img");
 
             ZonedDateTime now = ZonedDateTime.now(ZoneId.of("UTC"));
             String nowString = now.format(DateTimeFormatter.ISO_OFFSET_DATE_TIME);
-            newsList.add(new News(id, newsTitle.text(), newsDescription.text(), SOURCE_BY, SOURCE_URL, nowString, newsTitle.select("a").attr("href")));
+            newsList.add(new News(id, newsTitle.text(), newsDescription.text(), SOURCE_BY, SOURCE_URL, nowString, newsTitle.select("a").attr("href"), newsImage.attr("src")));
         }
 
         return newsList;

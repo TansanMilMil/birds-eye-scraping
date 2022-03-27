@@ -36,9 +36,10 @@ public class ScrapeZDNet implements ScrapingBase {
             id++;
             String href = SOURCE_URL + newsArea.select("a").attr("href");
             String newsTitle = newsArea.select("a > div.txt > p.txt-ttl").text();
+            Elements newsImage = newsArea.select("a > div.thumb > img");
             ZonedDateTime now = ZonedDateTime.now(ZoneId.of("UTC"));
             String nowString = now.format(DateTimeFormatter.ISO_OFFSET_DATE_TIME);
-            newsList.add(new News(id, newsTitle, null, SOURCE_BY, SOURCE_URL, nowString, href));
+            newsList.add(new News(id, newsTitle, null, SOURCE_BY, SOURCE_URL, nowString, href, SOURCE_URL + newsImage.attr("src")));
         }
 
         return newsList;

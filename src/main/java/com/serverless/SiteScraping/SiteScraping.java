@@ -19,7 +19,7 @@ import org.apache.logging.log4j.Logger;
 
 public class SiteScraping {
     private static final Logger LOG = LogManager.getLogger(Handler.class);
-    private static final int MAX_SCRAPING_ARTICLE = 5;
+    private static final int MAX_SCRAPING_ARTICLE = 99;
     
     public static void scrape() throws IOException {
         List<ScrapingBase> scrapingList = Arrays.asList(

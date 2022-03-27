@@ -177,7 +177,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/birds-eye-scraping/prod/1648184353616-2022-03-25T04:59:13.616Z/target/main-prod.jar"
+                "S3Key": "serverless/birds-eye-scraping/prod/1648233479846-2022-03-25T18:37:59.846Z/target/main-prod.jar"
               },
               "Handler": "com.serverless.Handler",
               "Runtime": "java11",
@@ -195,14 +195,14 @@
               "MainLogGroup"
             ]
           },
-          "MainLambdaVersion8et0TkXwVc9b88SCmwohf1nwFAlgfAcyEGjQUt7Nzc": {
+          "MainLambdaVersion3e4rfcHJNOKqPTgPRgUkJ7bmK1XQPPSvsAx3DeNBza4": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "MainLambdaFunction"
               },
-              "CodeSha256": "m3T7w4fCzTkYQET2oq7m4fN8tGKlGye/SBo3TC7tV18="
+              "CodeSha256": "08uRGzyiLE42V3tQXPw+/NIiWl9UhQ69jvVg0q7G0MA="
             }
           }
         },
@@ -215,7 +215,7 @@
           "MainLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "MainLambdaVersion8et0TkXwVc9b88SCmwohf1nwFAlgfAcyEGjQUt7Nzc"
+              "Ref": "MainLambdaVersion3e4rfcHJNOKqPTgPRgUkJ7bmK1XQPPSvsAx3DeNBza4"
             }
           }
         }
@@ -315,7 +315,7 @@
         "timeout": 30,
         "runtime": "java11",
         "vpc": {},
-        "versionLogicalId": "MainLambdaVersion8et0TkXwVc9b88SCmwohf1nwFAlgfAcyEGjQUt7Nzc"
+        "versionLogicalId": "MainLambdaVersion3e4rfcHJNOKqPTgPRgUkJ7bmK1XQPPSvsAx3DeNBza4"
       }
     },
     "configValidationMode": "warn",
@@ -331,7 +331,7 @@
       },
       "package": {
         "artifact": "target/main-prod.jar",
-        "artifactDirectoryName": "serverless/birds-eye-scraping/prod/1648184353616-2022-03-25T04:59:13.616Z"
+        "artifactDirectoryName": "serverless/birds-eye-scraping/prod/1648233479846-2022-03-25T18:37:59.846Z"
       },
       "functions": {
         "$ref": "$[\"service\"][\"functions\"]"
@@ -340,7 +340,7 @@
     "isDashboardMonitoringPreconfigured": false
   },
   "package": {
-    "artifactDirectoryName": "serverless/birds-eye-scraping/prod/1648184353616-2022-03-25T04:59:13.616Z",
+    "artifactDirectoryName": "serverless/birds-eye-scraping/prod/1648233479846-2022-03-25T18:37:59.846Z",
     "artifact": "target/main-prod.jar"
   }
 }

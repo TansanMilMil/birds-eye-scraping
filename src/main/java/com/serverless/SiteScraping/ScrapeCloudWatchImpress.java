@@ -37,7 +37,7 @@ public class ScrapeCloudWatchImpress implements ScrapingBase {
             Elements newsTitle = newsArea.select("div.body > div.text > p.title > a");
             ZonedDateTime now = ZonedDateTime.now(ZoneId.of("UTC"));
             String nowString = now.format(DateTimeFormatter.ISO_OFFSET_DATE_TIME);
-            newsList.add(new News(id, newsTitle.text(), null, SOURCE_BY, SOURCE_URL, nowString, newsTitle.attr("href")));
+            newsList.add(new News(id, newsTitle.text(), null, SOURCE_BY, SOURCE_URL, nowString, newsTitle.attr("href"), null));
         }
 
         return newsList;

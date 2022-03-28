@@ -38,7 +38,20 @@ public class ScrapeGigazine implements ScrapingBase {
             Elements newsImage = newsArea.select("div.thumb > a > img");
             ZonedDateTime now = ZonedDateTime.now(ZoneId.of("UTC"));
             String nowString = now.format(DateTimeFormatter.ISO_OFFSET_DATE_TIME);
-            newsList.add(new News(id, newsTitle.text(), null, SOURCE_BY, SOURCE_URL, nowString, newsTitle.attr("href"), newsImage.attr("src")));                    
+            String linkHref = newsTitle.attr("href");
+            String description = null;
+            if (linkHref != null) {
+                Elements metaTags = Jsoup.connect(linkHref).get().getElementsByTag("meta");
+                for (Element metaTag : metaTags) {
+                    String name = metaTag.attr("name");
+                    String content = metaTag.attr("content");
+                    if("description".equals(name)) {
+                        description = content;
+                    }                    
+                }
+            }
+
+            newsList.add(new News(id, newsTitle.text(), description, SOURCE_BY, SOURCE_URL, nowString, linkHref, newsImage.attr("src")));
         }
 
         return newsList;
